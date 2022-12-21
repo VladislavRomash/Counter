@@ -1,0 +1,37 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.buttonContainer {
+    justify-content: center;
+}
+
+.input {
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+    font-size: 110%;
+    width: 50%;
+    text-align: center;
+}
+
+.inputError {
+    border: 1px solid red;
+    background-color: pink;
+}
+
+.maxMinContainer {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.span {
+    color: dodgerblue;
+    font-size: 130%;
+}

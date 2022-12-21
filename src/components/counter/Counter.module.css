@@ -1,0 +1,20 @@
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 500%;
+    color: dodgerblue;
+}
+
+.buttonContainer {
+    justify-content: space-around;
+}
+
+.error {
+    color: red;
+}
+
+.message {
+    text-align: center;
+    font-size: 40%;
+}
