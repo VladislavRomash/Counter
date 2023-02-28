@@ -1,8 +1,10 @@
-import React, {useReducer, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Counter} from './components/counter/Counter';
 import {Settings} from './components/settings/Settings';
-import {CounterReducer, IncreaseAC, ResetAC, SetAC} from './reducers/CounterReducer';
+import {SetAC} from './reducers/CounterReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootStateType} from './state/store';
 
 export type StateType = {
     startValue: number
@@ -12,11 +14,9 @@ export type StateType = {
 
 function App() {
 
-    const [state, dispatch] = useReducer(CounterReducer, {
-        startValue: 0,
-        maxValue: 5,
-        currentValue: 0
-    })
+    const state = useSelector<RootStateType, StateType>(state => state.counter)
+
+    const dispatch = useDispatch()
 
     const [currentMax, setCurrentMax] = useState<number>(state.maxValue)
     const [currentStart, setCurrentStart] = useState<number>(state.startValue)
@@ -26,16 +26,6 @@ function App() {
 
     const errorValue = currentStart < 0 || currentStart >= currentMax
     const errorValueMax = currentMax < 0 || currentStart >= currentMax
-
-    const increaseFn = () => {
-        if (state.currentValue < state.maxValue) {
-            dispatch(IncreaseAC())
-        } else return state.currentValue
-    }
-
-    const resetFn = () => {
-        dispatch(ResetAC())
-    }
 
     const setSettingsFn = () => {
         dispatch(SetAC(currentMax, currentStart))
@@ -58,12 +48,10 @@ function App() {
                       setFocusCounter={setFocusCounter}
             />
 
-            <Counter state={state}
-                     inc={increaseFn}
-                     res={resetFn}
-                     errorValue={errorValue}
-                     errorValueMax={errorValueMax}
-                     focusSettings={focusSettings}
+            <Counter
+                errorValue={errorValue}
+                errorValueMax={errorValueMax}
+                focusSettings={focusSettings}
             />
 
         </div>

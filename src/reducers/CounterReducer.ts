@@ -4,7 +4,13 @@ type ActionType = IncreaseTypeAC
     | ResetTypeAC
     | SetTypeAC
 
-export const CounterReducer = (state: StateType, action: ActionType): StateType => {
+const initialState: StateType = {
+    startValue: 0,
+    maxValue: 5,
+    currentValue: 0
+}
+
+export const CounterReducer = (state = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case 'INCREASE-VALUE': {
             return {...state, currentValue: state.currentValue + 1}
